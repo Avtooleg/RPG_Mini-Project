@@ -5,6 +5,10 @@
 #include "Utils.h"
 #include "Map.h"
 
+#if defined _WIN32
+#include <windows.h>
+#endif
+
 /*class keys_pressed{
 
     char single;
@@ -23,7 +27,7 @@
 };*/
 
 char get_player_input(std::vector<int> &keys){
-    see = true;
+    bool see = true;
     while(see) {
         for (int i = 0; i < keys.size(); i++) {
             if (GetKeyState(keys[i]) & 0x8000) {

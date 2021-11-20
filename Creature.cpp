@@ -1,7 +1,7 @@
 #include "Creature.h"
-
 #include "Frontend.h"
 #include "Map.h"
+#include "Utils.h"
 
 ICreature::ICreature(char mark, std::vector<int> init_stats, Map &init_map) 
     : marker(mark)
@@ -86,12 +86,6 @@ Test_creature::Test_creature(char mark, std::vector<int> init_stats, Map &init_m
 
 void Test_creature::attack(ICreature &target) {
 
-};
-
-Test_creature::Test_creature(char mark, std::vector<int> init_stats, Map &init_map): marker(mark), stats(init_stats), global_map(init_map) {
-    move_points = 0;
-    hp = 0;
-    pos = position(0,0);
 };
 
 //Перегружает движение. Костыль. Была та же ошибка, что сейчас в do_turn()
