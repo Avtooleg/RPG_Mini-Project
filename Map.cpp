@@ -14,7 +14,7 @@ position get_random_position(int map_size, int forbidden_rad, position center){
     return pos;
 }
 
-position Map::add_monsters(char marker, int forbidden_rad, position center, std::vector<ICreature> &monsters){
+position Map::add_monsters(char marker, int forbidden_rad, position center, std::vector<ICreature> &monsters){ //TODO: What return ??
     for(int i = 0; i<monsters.size(); i++){
         while(true) {
             position pos = get_random_position(map_size, forbidden_rad, center);

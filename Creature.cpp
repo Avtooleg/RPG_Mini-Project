@@ -1,15 +1,18 @@
-#include "Frontend.h"
-#include <vector>
-#include "Map.h"
-#include "Utils.h"
 #include "Creature.h"
 
+#include "Frontend.h"
+#include "Map.h"
+
+ICreature::ICreature(char mark, std::vector<int> init_stats, Map &init_map) 
+    : marker(mark)
+    , stats(init_stats)
+    , global_map(init_map) {}
 
 void ICreature::move(position direction){
     position new_pos;
     new_pos.x = pos.x + direction.x;
     new_pos.y = pos.y + direction.y;
-    global_map.map_monster_update(pos, new_pos)
+    //global_map.map_monster_update(pos, new_pos); //TODO: error on function call
     pos = new_pos;
 };
 int ICreature::get_hp(){
@@ -73,6 +76,14 @@ void ICreature::init_move_points(){
     move_points = stats[3]/2 + 1;
 };
 
+Test_creature::Test_creature(char mark, std::vector<int> init_stats, Map &init_map) /*: marker(mark), stats(init_stats), global_map(init_map) - нельзя инициализировать родительские переменные через список инициализации !*/ 
+    : ICreature(mark, init_stats, init_map)
+{
+        move_points = 0;
+        hp = 0;
+        pos = position({0,0});// position(0,0); - так вызывается конструктор, но его нет, поэтому синтаксическая ошибка
+};
+
 void Test_creature::attack(ICreature &target) {
 
 };
@@ -82,7 +93,7 @@ void Test_creature::move(position direction){
     position new_pos;
     new_pos.x = pos.x + direction.x;
     new_pos.y = pos.y + direction.y;
-    global_map.map_monster_update(pos, new_pos)
+    //global_map.map_monster_update(pos, new_pos); //TODO: error on function call
     pos = new_pos;
 };
 

@@ -1,8 +1,9 @@
 #include "Frontend.h"
 #include <iostream>
-#include <windows.h>
-#include <string>
-#include <vector>
+//#include <windows.h>
+
+#include "Utils.h"
+#include "Map.h"
 
 /*class keys_pressed{
 

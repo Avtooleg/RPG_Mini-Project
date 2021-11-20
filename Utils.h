@@ -1,18 +1,17 @@
-#pragma once
+#ifndef RPG_MINIPROJECT_UTILS_H
+#define RPG_MINIPROJECT_UTILS_H
 
 #include <random>
 #include <ctime>
 #include <algorithm>
-#include "Creature.h"
+
 
 
 std::mt19937 mersenne(time(0));
 
+class ICreature;
 
-int get_damage(ICreature &creature){
-
-};
-
+int get_damage(ICreature &creature);
 
 struct position{
     int x;
@@ -29,8 +28,8 @@ int sign(float x){
 };
 
 
-bool is_in(char x, std::vector<char> *vec){
-    return std::find(vec->begin(), vec->end(), x)!=vec->end();
+bool is_in(char x, const std::vector<char>& vec){
+    return std::find(vec.begin(), vec.end(), x)!=vec.end();
 }
 
 int get_random_int(int min, int max){
@@ -40,3 +39,4 @@ int get_random_int(int min, int max){
     return static_cast<int>(initial * fraction * (max - min + 1) + min);
 };
 
+#endif //RPG_MINIPROJECT_UTILS_H

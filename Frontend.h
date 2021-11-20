@@ -5,7 +5,9 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "Map.h"
+
+class Map;
+struct position;
 
 char get_player_input(const std::vector<int> &keys);
 void map_output(Map map, position center, int rad);

@@ -4,7 +4,17 @@
 #include "Creature.h"
 #include "Map.h"
 #include "Frontend.h"
+
+#if defined _WIN32
 #include <windows.h>
+#else
+#define VK_LEFT     0xf702
+#define VK_UP       0xf700
+#define VK_RIGHT    0xf703
+#define VK_DOWN     0xf701
+#define VK_ESCAPE   0x1B
+#define VK_SPACE    0x1C
+#endif
 
 Player::Player(ICreature &creature): race(creature){
     xp = 0;

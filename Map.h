@@ -3,7 +3,7 @@
 
 
 #include <vector>
-#include <string.h>
+#include <string>
 #include <map>
 
 class ICreature;

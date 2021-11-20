@@ -1,13 +1,14 @@
 #ifndef RPG_MINIPROJECT_CREATURE_H
 #define RPG_MINIPROJECT_CREATURE_H
 
-#include <vector>
 #include "Utils.h"
+
+class Map;
 
 class ICreature{
     public:
 
-        ICreature() = default;
+        ICreature(char mark, std::vector<int> init_stats, Map &init_map);
         virtual void do_turn();
         void move(position direction);
         virtual void attack(ICreature &target);
@@ -51,11 +52,7 @@ class Test_creature : public ICreature{
 
     public:
 
-    Test_creature(char mark, std::vector<int> init_stats, Map &init_map): marker(mark), stats(init_stats), global_map(init_map) {
-        move_points = 0;
-        hp = 0;
-        pos = position(0,0);
-    };
+    Test_creature(char mark, std::vector<int> init_stats, Map &init_map);
 
     void move(position direction);
     void do_turn();
