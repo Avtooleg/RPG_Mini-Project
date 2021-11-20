@@ -1,6 +1,7 @@
 #include <random>
 #include <ctime>
 #include <algorithm>
+#include "Creature.h"
 
 std::mt19937 mersenne(time(0));
 
@@ -11,7 +12,9 @@ struct position{
 
 int sign(float x){
     return (x>=0) - (x<0);
-}
+};
+
+int get_damage(ICreature &creature){};
 
 bool is_in(char x, std::vector<char> *vec){
     return std::find(vec->begin(), vec->end(), x)!=vec->end();

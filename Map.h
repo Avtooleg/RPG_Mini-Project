@@ -5,14 +5,10 @@
 #include <vector>
 #include <string.h>
 #include "Player.h"
+#include "Utils.h"
 
 const vector<char> forbidden_chars = {'M', 'P', 'L'};
 const int max_def = 1e9;
-
-struct position{
-    int x;
-    int y;
-};
 
 typedef std::vector<std::string> space;
 

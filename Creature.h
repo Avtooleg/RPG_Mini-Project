@@ -11,8 +11,8 @@ class ICreature{
 
         ICreature() = default;
         virtual void do_turn();
-        virtual void move();
-        virtual void regen();
+        void move(position direction);
+        void regen();
         virtual void attack(ICreature &target);
 
         int get_hp();
@@ -25,6 +25,7 @@ class ICreature{
         std::vector<int> get_stats(); // Получить весь массив
         position get_pos();
         char get_marker();
+        int get_move_points();
 
         void set_hp(int val);
         void set_str(int val);
@@ -33,6 +34,8 @@ class ICreature{
         void set_luck(int val);
         void set_int(int val);
         void set_perc(int val);
+
+        void init_move_point();
 
         ~ICreature() = default;
 

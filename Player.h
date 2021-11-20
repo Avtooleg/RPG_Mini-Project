@@ -9,15 +9,17 @@
 class Player{
 public:
 
-    Player(Icreature &creature);
+    Player(ICreature &creature);
 
-    void do_turn() override;
+    void do_turn();
+    //Вызывать только по достижении нужного кол-ва опыта!
     void level_up();
     void attack(ICreature &target);
-    void set_hp(int hp);
+    void set_hp(int val);
+    //Вызывать только после проверки того, что есть очки хода!
     void move();
 
-    int get_pos();
+    position get_pos();
 
     ~Player();
 
@@ -25,6 +27,7 @@ private:
 
     ICreature &race;
     int level;
+    int xp;
 
 };
 

@@ -21,13 +21,16 @@
     }
 };*/
 
-char get_player_input(std::vector<int> keys){
-    for (int i = 0; i < keys.size(); i++){
-        if(GetKeyState(keys[i]) & 0x8000){
-            return keys[i];
+char get_player_input(std::vector<int> &keys){
+    see = true;
+    while(see) {
+        for (int i = 0; i < keys.size(); i++) {
+            if (GetKeyState(keys[i]) & 0x8000) {
+                see = false;
+                return keys[i];
+            }
         }
     }
-    return 0;
 }
 
 void map_output(Map map, position center, int rad){
