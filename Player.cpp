@@ -31,15 +31,19 @@ void Player::level_up(){
     std::vector<int> stats = race.get_stats();
     static const std::vector<std::string> names = {"strength(s)", "stamina(t)", "agility(a)", "luck(l)", "intellect(i)", "perception(p)"};
     std::cout << "You have got a level up! Now, you need to decide,\nWhat will you train?";
+    //Вывод вариантов
     for(int i = 0; i < stats.size(); i++){
         std::cout << "Your " << names[i] << ": " << stats[i] << "\n";
     }
+    //Старый, копипастный код.
     /*std::cout << "Your strength(s): " << race->get_str(); //Сила
     std::cout << "Your stamina(t): " << race->get_stam(); // Выносливость
     std::cout << "Your agility(a): " << race->get_agil(); // Ловкость
     std::cout << "Your luck(l): " << race->get_luck(); // Удача
     std::cout << "Your intellect(i): " << race->get_int(); // Интеллект
     std::cout << "Your perception(p): " << race->get_perc(); // Восприятие*/
+
+    //Обработка ответа игрока
     char ch = get_player_input(keys);
     switch(ch) {
         case 'S':
@@ -91,9 +95,12 @@ position Player::get_pos(){
 }
 
 void Player::do_turn() {
+    //Добавляем очки движения на этот ход
     race.init_move_points();
+    //Возможные варианты действий(клавиши)
     static const std::vector<int> keys = {VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, VK_SPACE, 'Q', 'I', 'D'};
     static const std::vector<std::string> names = {"strength(s)", "stamina(t)", "agility(a)", "luck(l)", "intellect(i)", "perception(p)"};
+    //Обработка ответа игрока
     char ch = get_player_input(keys);
     position direction;
     switch (ch){
@@ -117,6 +124,7 @@ void Player::do_turn() {
                 move(direction);
                 break;
             }
+            //Вывести характеристики
             case 'I': {
                 std::vector<int> stats = race.get_stats();
                 for (int i = 0; i < stats.size(); i++) {
@@ -124,11 +132,13 @@ void Player::do_turn() {
                 }
                 break;
             }
+            //Планируется реализовать выход через исключения
             case 'Q': {
                 std::cout << "You are quitting the game.";
                 //quit();
                 break;
             }
+            //Будет обработка боевки на пробел, вероятно, вызовом attack()
             default:
                 break;
         }

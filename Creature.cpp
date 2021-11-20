@@ -20,26 +20,26 @@ int ICreature::get_hp(){
 };
 int ICreature::get_str(){
     return stats[0];
-}; //Сила
+};
 int ICreature::get_stam(){
     return stats[1];
-}; // Выносливость
+};
 int ICreature::get_agil(){
     return stats[2];
-}; // Ловкость
+};
 int ICreature::get_luck(){
     return stats[3];
-}; // Удача
+};
 int ICreature::get_int(){
     return stats[4];
-}; // Интеллект
+};
 int ICreature::get_perc(){
     return stats[5];
-}; // Восприятие
+};
 std::vector<int> ICreature::get_stats(){
     std::vector<int> result = stats;
     return result;
-}; // Получить весь массив
+};
 position ICreature::get_pos(){
     return pos;
 };
@@ -88,7 +88,14 @@ void Test_creature::attack(ICreature &target) {
 
 };
 
+Test_creature::Test_creature(char mark, std::vector<int> init_stats, Map &init_map): marker(mark), stats(init_stats), global_map(init_map) {
+    move_points = 0;
+    hp = 0;
+    pos = position(0,0);
+};
 
+//Перегружает движение. Костыль. Была та же ошибка, что сейчас в do_turn()
+//у init_move_points()
 void Test_creature::move(position direction){
     position new_pos;
     new_pos.x = pos.x + direction.x;
@@ -97,8 +104,10 @@ void Test_creature::move(position direction){
     pos = new_pos;
 };
 
+//Тестовый вариант, без особого смысла
 void Test_creature::do_turn(){
     position direction;
+    init_move_points();
     direction.x = 1;
     direction.y = 1;
     move(direction);

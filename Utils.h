@@ -6,13 +6,16 @@
 #include <algorithm>
 
 
-
 std::mt19937 mersenne(time(0));
+
+//Определяет урон, наносимый существом (игроком).
+//Планируются аналоги для защиты и уклонения
+int get_damage(ICreature &creature){
+
 
 class ICreature;
 
-int get_damage(ICreature &creature);
-
+//Точка на поле
 struct position{
     int x;
     int y;

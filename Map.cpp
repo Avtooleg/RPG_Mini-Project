@@ -6,7 +6,7 @@
 position get_random_position(int map_size, int forbidden_rad, position center){
     float randx = static_cast<float> (get_random_int(-max_def, max_def)/max_def); //Число между минус единицей и единицей
     float randy = static_cast<float> (get_random_int(-max_def, max_def)/max_def);
-    int dx = static_cast<int> (randx*(map_size/2 - forbidden_rad) + sign(randx)*forbidden_rad);
+    int dx = static_cast<int> (randx*(map_size/2 - forbidden_rad) + sign(randx)*forbidden_rad); //Проецирование на отрезок [forbidden_rad, map_size/2]
     int dy = static_cast<int> (randy*(map_size/2 - forbidden_rad) + sign(randy)*forbidden_rad);
     position pos;
     pos.x = center.x + dx;
