@@ -1,3 +1,6 @@
+#ifndef RPG_MINIPROJECT_CREATURE_H
+#define RPG_MINIPROJECT_CREATURE_H
+
 #include "Frontend.h"
 #include <vector>
 #include "Map.h"
@@ -11,21 +14,23 @@ class ICreature{
         virtual void regen();
         virtual void attack(ICreature &target);
 
-        virtual int get_hp();
-        virtual int get_str(); //Сила
-        virtual int get_stam(); // Выносливость
-        virtual int get_agil(); // Ловкость
-        virtual int get_luck(); // Удача
-        virtual int get_int(); // Интеллект
-        virtual int get_perc(); // Восприяте
+        int get_hp();
+        int get_str(); //Сила
+        int get_stam(); // Выносливость
+        int get_agil(); // Ловкость
+        int get_luck(); // Удача
+        int get_int(); // Интеллект
+        int get_perc(); // Восприяте
+        position get_pos();
+        char get_marker();
 
-        virtual void set_hp(int hp);
-        virtual void set_str(int hp);
-        virtual void set_stam(int hp);
-        virtual void set_agil(int hp);
-        virtual void set_luck(int hp);
-        virtual void set_int(int hp);
-        virtual void set_perc(int hp);
+        void set_hp(int hp);
+        void set_str(int hp);
+        void set_stam(int hp);
+        void set_agil(int hp);
+        void set_luck(int hp);
+        void set_int(int hp);
+        void set_perc(int hp);
 
         ~ICreature() = default;
 
@@ -33,10 +38,8 @@ class ICreature{
 
         std::vector<int> stats;
         position pos;
+        char marker;
 
 };
-
-#ifndef RPG_MINIPROJECT_CREATURE_H
-#define RPG_MINIPROJECT_CREATURE_H
 
 #endif //RPG_MINIPROJECT_CREATURE_H
