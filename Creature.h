@@ -4,11 +4,12 @@
 #include "Frontend.h"
 #include <vector>
 #include "Map.h"
+#include "Utils.h"
 
 class ICreature{
     public:
 
-        Icreature() = default;
+        ICreature() = default;
         virtual void do_turn();
         virtual void move();
         virtual void regen();
@@ -20,22 +21,25 @@ class ICreature{
         int get_agil(); // Ловкость
         int get_luck(); // Удача
         int get_int(); // Интеллект
-        int get_perc(); // Восприяте
+        int get_perc(); // Восприятие
+        std::vector<int> get_stats(); // Получить весь массив
         position get_pos();
         char get_marker();
 
-        void set_hp(int hp);
-        void set_str(int hp);
-        void set_stam(int hp);
-        void set_agil(int hp);
-        void set_luck(int hp);
-        void set_int(int hp);
-        void set_perc(int hp);
+        void set_hp(int val);
+        void set_str(int val);
+        void set_stam(int val);
+        void set_agil(int val);
+        void set_luck(int val);
+        void set_int(int val);
+        void set_perc(int val);
 
         ~ICreature() = default;
 
     private:
 
+        int hp;
+        int move_points;
         std::vector<int> stats;
         position pos;
         char marker;
