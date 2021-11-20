@@ -8,6 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/olego/CLionProjects/RPG_miniproject/Creature.cpp" "C:/Users/olego/CLionProjects/RPG_miniproject/cmake-build-debug/CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj"
+  "C:/Users/olego/CLionProjects/RPG_miniproject/Map.cpp" "C:/Users/olego/CLionProjects/RPG_miniproject/cmake-build-debug/CMakeFiles/RPG_miniproject.dir/Map.cpp.obj"
+  "C:/Users/olego/CLionProjects/RPG_miniproject/Player.cpp" "C:/Users/olego/CLionProjects/RPG_miniproject/cmake-build-debug/CMakeFiles/RPG_miniproject.dir/Player.cpp.obj"
   "C:/Users/olego/CLionProjects/RPG_miniproject/main.cpp" "C:/Users/olego/CLionProjects/RPG_miniproject/cmake-build-debug/CMakeFiles/RPG_miniproject.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

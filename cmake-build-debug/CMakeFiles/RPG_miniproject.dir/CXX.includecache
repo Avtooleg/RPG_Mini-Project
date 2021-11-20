@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/olego/CLionProjects/RPG_miniproject/main.cpp
+iostream
+-
+vector
+-
+windows.h
+-
+random
+-
+ctime
+-
+

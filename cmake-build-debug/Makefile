@@ -128,6 +128,78 @@ RPG_miniproject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/build
 .PHONY : RPG_miniproject/fast
 
+Creature.obj: Creature.cpp.obj
+.PHONY : Creature.obj
+
+# target to build an object file
+Creature.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj
+.PHONY : Creature.cpp.obj
+
+Creature.i: Creature.cpp.i
+.PHONY : Creature.i
+
+# target to preprocess a source file
+Creature.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Creature.cpp.i
+.PHONY : Creature.cpp.i
+
+Creature.s: Creature.cpp.s
+.PHONY : Creature.s
+
+# target to generate assembly for a file
+Creature.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Creature.cpp.s
+.PHONY : Creature.cpp.s
+
+Map.obj: Map.cpp.obj
+.PHONY : Map.obj
+
+# target to build an object file
+Map.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Map.cpp.obj
+.PHONY : Map.cpp.obj
+
+Map.i: Map.cpp.i
+.PHONY : Map.i
+
+# target to preprocess a source file
+Map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Map.cpp.i
+.PHONY : Map.cpp.i
+
+Map.s: Map.cpp.s
+.PHONY : Map.s
+
+# target to generate assembly for a file
+Map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Map.cpp.s
+.PHONY : Map.cpp.s
+
+Player.obj: Player.cpp.obj
+.PHONY : Player.obj
+
+# target to build an object file
+Player.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Player.cpp.obj
+.PHONY : Player.cpp.obj
+
+Player.i: Player.cpp.i
+.PHONY : Player.i
+
+# target to preprocess a source file
+Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Player.cpp.i
+.PHONY : Player.cpp.i
+
+Player.s: Player.cpp.s
+.PHONY : Player.s
+
+# target to generate assembly for a file
+Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RPG_miniproject.dir\build.make CMakeFiles/RPG_miniproject.dir/Player.cpp.s
+.PHONY : Player.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -161,6 +233,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... RPG_miniproject
+	@echo ... Creature.obj
+	@echo ... Creature.i
+	@echo ... Creature.s
+	@echo ... Map.obj
+	@echo ... Map.i
+	@echo ... Map.s
+	@echo ... Player.obj
+	@echo ... Player.i
+	@echo ... Player.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

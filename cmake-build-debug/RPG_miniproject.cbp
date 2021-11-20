@@ -80,16 +80,28 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Creature.cpp">
+			<Option target="RPG_miniproject"/>
+		</Unit>
 		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Creature.h">
 			<Option target="RPG_miniproject"/>
 		</Unit>
 		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Frontend.h">
 			<Option target="RPG_miniproject"/>
 		</Unit>
-		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Map_gen.h">
+		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Map.cpp">
+			<Option target="RPG_miniproject"/>
+		</Unit>
+		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Map.h">
+			<Option target="RPG_miniproject"/>
+		</Unit>
+		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Player.cpp">
 			<Option target="RPG_miniproject"/>
 		</Unit>
 		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Player.h">
+			<Option target="RPG_miniproject"/>
+		</Unit>
+		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/Utils.h">
 			<Option target="RPG_miniproject"/>
 		</Unit>
 		<Unit filename="C:/Users/olego/CLionProjects/RPG_miniproject/main.cpp">

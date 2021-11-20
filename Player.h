@@ -1,10 +1,13 @@
 #ifndef RPG_MINIPROJECT_PLAYER_H
 #define RPG_MINIPROJECT_PLAYER_H
 
-#include "Creature.h"
-#include "Frontend.h"
+//#include "Creature.h"
+//#include "Frontend.h"
 #include <vector>
-#include "Map.h"
+//#include "Map.h"
+
+class ICreature;
+struct position;
 
 class Player{
 public:
@@ -16,8 +19,7 @@ public:
     void level_up();
     void attack(ICreature &target);
     void set_hp(int val);
-    //Вызывать только после проверки того, что есть очки хода!
-    void move();
+    void move(position direction);
 
     position get_pos();
 

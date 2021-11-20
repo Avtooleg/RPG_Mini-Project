@@ -12,8 +12,23 @@ void quit(){
 }
 
 int main() {
-    while(run){
+    std::vector<ICreature> creatures = {};
+    space _map = {
+            "^^###^%%%#",
+            "^#####%%##",
+            "^^#####%##",
+            "^^^#######",
+            "^^^^^##^^^",
+            "^^^^^#^^^^",
+            "^%%^###%%^",
+            "%%%####%%%",
+            "%######%%#",
+            "^^####^^^^"
+    };
+    std::vector<ICreature> pass_vec = {};
+    Map global_map = Map(_map, creatures, pass_vec, pass_vec, 1, 0, 0);
 
+    while(run){
     }
     return 0;
 }

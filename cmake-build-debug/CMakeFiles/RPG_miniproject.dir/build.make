@@ -78,19 +78,64 @@ CMakeFiles/RPG_miniproject.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RPG_miniproject.dir/main.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\olego\CLionProjects\RPG_miniproject\main.cpp -o CMakeFiles\RPG_miniproject.dir\main.cpp.s
 
+CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj: CMakeFiles/RPG_miniproject.dir/flags.make
+CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj: ../Creature.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\olego\CLionProjects\RPG_miniproject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RPG_miniproject.dir\Creature.cpp.obj -c C:\Users\olego\CLionProjects\RPG_miniproject\Creature.cpp
+
+CMakeFiles/RPG_miniproject.dir/Creature.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RPG_miniproject.dir/Creature.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\olego\CLionProjects\RPG_miniproject\Creature.cpp > CMakeFiles\RPG_miniproject.dir\Creature.cpp.i
+
+CMakeFiles/RPG_miniproject.dir/Creature.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RPG_miniproject.dir/Creature.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\olego\CLionProjects\RPG_miniproject\Creature.cpp -o CMakeFiles\RPG_miniproject.dir\Creature.cpp.s
+
+CMakeFiles/RPG_miniproject.dir/Player.cpp.obj: CMakeFiles/RPG_miniproject.dir/flags.make
+CMakeFiles/RPG_miniproject.dir/Player.cpp.obj: ../Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\olego\CLionProjects\RPG_miniproject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RPG_miniproject.dir/Player.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RPG_miniproject.dir\Player.cpp.obj -c C:\Users\olego\CLionProjects\RPG_miniproject\Player.cpp
+
+CMakeFiles/RPG_miniproject.dir/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RPG_miniproject.dir/Player.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\olego\CLionProjects\RPG_miniproject\Player.cpp > CMakeFiles\RPG_miniproject.dir\Player.cpp.i
+
+CMakeFiles/RPG_miniproject.dir/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RPG_miniproject.dir/Player.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\olego\CLionProjects\RPG_miniproject\Player.cpp -o CMakeFiles\RPG_miniproject.dir\Player.cpp.s
+
+CMakeFiles/RPG_miniproject.dir/Map.cpp.obj: CMakeFiles/RPG_miniproject.dir/flags.make
+CMakeFiles/RPG_miniproject.dir/Map.cpp.obj: ../Map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\olego\CLionProjects\RPG_miniproject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RPG_miniproject.dir/Map.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RPG_miniproject.dir\Map.cpp.obj -c C:\Users\olego\CLionProjects\RPG_miniproject\Map.cpp
+
+CMakeFiles/RPG_miniproject.dir/Map.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RPG_miniproject.dir/Map.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\olego\CLionProjects\RPG_miniproject\Map.cpp > CMakeFiles\RPG_miniproject.dir\Map.cpp.i
+
+CMakeFiles/RPG_miniproject.dir/Map.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RPG_miniproject.dir/Map.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\olego\CLionProjects\RPG_miniproject\Map.cpp -o CMakeFiles\RPG_miniproject.dir\Map.cpp.s
+
 # Object files for target RPG_miniproject
 RPG_miniproject_OBJECTS = \
-"CMakeFiles/RPG_miniproject.dir/main.cpp.obj"
+"CMakeFiles/RPG_miniproject.dir/main.cpp.obj" \
+"CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj" \
+"CMakeFiles/RPG_miniproject.dir/Player.cpp.obj" \
+"CMakeFiles/RPG_miniproject.dir/Map.cpp.obj"
 
 # External object files for target RPG_miniproject
 RPG_miniproject_EXTERNAL_OBJECTS =
 
 RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/main.cpp.obj
+RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj
+RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/Player.cpp.obj
+RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/Map.cpp.obj
 RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/build.make
 RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/linklibs.rsp
 RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/objects1.rsp
 RPG_miniproject.exe: CMakeFiles/RPG_miniproject.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\olego\CLionProjects\RPG_miniproject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable RPG_miniproject.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\olego\CLionProjects\RPG_miniproject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable RPG_miniproject.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\RPG_miniproject.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

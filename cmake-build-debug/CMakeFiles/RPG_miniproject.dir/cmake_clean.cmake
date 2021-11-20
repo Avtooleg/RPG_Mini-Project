@@ -1,4 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/RPG_miniproject.dir/Creature.cpp.obj"
+  "CMakeFiles/RPG_miniproject.dir/Map.cpp.obj"
+  "CMakeFiles/RPG_miniproject.dir/Player.cpp.obj"
   "CMakeFiles/RPG_miniproject.dir/main.cpp.obj"
   "RPG_miniproject.exe"
   "RPG_miniproject.exe.manifest"

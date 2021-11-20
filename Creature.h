@@ -1,9 +1,7 @@
 #ifndef RPG_MINIPROJECT_CREATURE_H
 #define RPG_MINIPROJECT_CREATURE_H
 
-#include "Frontend.h"
 #include <vector>
-#include "Map.h"
 #include "Utils.h"
 
 class ICreature{
@@ -12,7 +10,6 @@ class ICreature{
         ICreature() = default;
         virtual void do_turn();
         void move(position direction);
-        void regen();
         virtual void attack(ICreature &target);
 
         int get_hp();
@@ -35,18 +32,34 @@ class ICreature{
         void set_int(int val);
         void set_perc(int val);
 
-        void init_move_point();
+        void init_move_points();
 
         ~ICreature() = default;
 
-    private:
+    protected:
 
         int hp;
         int move_points;
         std::vector<int> stats;
+        Map &global_map;
         position pos;
         char marker;
 
+};
+
+class Test_creature : public ICreature{
+
+    public:
+
+    Test_creature(char mark, std::vector<int> init_stats, Map &init_map): marker(mark), stats(init_stats), global_map(init_map) {
+        move_points = 0;
+        hp = 0;
+        pos = position(0,0);
+    };
+
+    void move(position direction);
+    void do_turn();
+    void attack(ICreature &target);
 };
 
 #endif //RPG_MINIPROJECT_CREATURE_H
