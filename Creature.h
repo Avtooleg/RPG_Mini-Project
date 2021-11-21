@@ -47,7 +47,7 @@ class ICreature{
 
         void init_move_points();//Инициализирует очки движения на основе характеристик. Ловкости, например.
 
-        ~ICreature() = default;
+        virtual ~ICreature() = default;
 
     protected:
 
@@ -72,6 +72,8 @@ class Test_creature : public ICreature{
     void move(position direction);
     void do_turn();
     void attack(ICreature &target);
+
+    ~Test_creature() = default;
 };
 
 #endif //RPG_MINIPROJECT_CREATURE_H

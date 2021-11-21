@@ -7,14 +7,19 @@
 
 class ICreature;
 
-std::mt19937 mersenne(time(0));
+extern std::mt19937 mersenne;
 
 //Определяет урон, наносимый существом (игроком).
 //Планируются аналоги для защиты и уклонения
 int get_damage(ICreature &creature);
 
 //Точка на поле
-struct position;
+struct position {
+    int x;
+    int y;
+
+    bool operator<(position pos) const;
+};
 
 int sign(float val);
 

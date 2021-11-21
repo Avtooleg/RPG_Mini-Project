@@ -1,20 +1,16 @@
 #include "Utils.h"
 #include "Creature.h"
 
+std::mt19937 mersenne(time(0));
 
 int get_damage(ICreature &creature){
     creature.set_hp(creature.get_hp() - 1);
     return 0;
 };//TODO: return some damage value
 
-struct position {
-    int x;
-    int y;
-
-    bool operator<(position pos) {
-        return (x * x + y * y < pos.x * pos.x + pos.y * pos.y);
-    }
-};
+bool position::operator<(position pos) const {
+    return (x * x + y * y < pos.x * pos.x + pos.y * pos.y);
+}
 
 int sign(float val){
     return (val>=0) - (val<0);

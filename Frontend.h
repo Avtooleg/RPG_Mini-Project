@@ -15,4 +15,7 @@ struct position;
 char get_player_input(const std::vector<int> &keys);
 //Выводит кусок карты rad*rad вокруг center
 void map_output(Map map, position center, int rad);
+
+void clear_console();
 #endif //RPG_MINIPROJECT_FRONTEND_H
+

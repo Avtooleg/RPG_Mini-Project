@@ -6,7 +6,15 @@
 ICreature::ICreature(char mark, std::vector<int> init_stats, Map &init_map) 
     : marker(mark)
     , stats(init_stats)
-    , global_map(init_map) {}
+    , global_map(init_map) {};
+
+void ICreature::do_turn() {
+    std::cout << "Error! There is an ICreature here!";
+};
+
+void ICreature::attack(ICreature &target) {
+    std::cout << "Error! There is an ICreature here!";
+};
 
 void ICreature::move(position direction){
     position new_pos;
@@ -85,7 +93,7 @@ Test_creature::Test_creature(char mark, std::vector<int> init_stats, Map &init_m
 };
 
 void Test_creature::attack(ICreature &target) {
-
+    target.set_hp(target.get_hp() - 1);
 };
 
 //Перегружает движение. Костыль. Была та же ошибка, что сейчас в do_turn()

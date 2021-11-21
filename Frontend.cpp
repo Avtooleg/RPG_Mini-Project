@@ -26,7 +26,7 @@
     }
 };*/
 
-char get_player_input(std::vector<int> &keys){
+char get_player_input(const std::vector<int> &keys){
     bool see = true;
     while(see) {
         for (int i = 0; i < keys.size(); i++) {
@@ -43,4 +43,8 @@ void map_output(Map map, position center, int rad){
     for (int i = 0; i < area.size(); i++){
         std::cout << area[i] << '\n';
     }
+}
+
+void clear_console(){
+    system("cls");
 }
