@@ -13,7 +13,7 @@ struct position;
 class Player{
 public:
 
-    Player(ICreature &creature);
+    Player(ICreature &creature, position init_pos);
 
     void do_turn();//Аналог do_turn() у ICreature, но с обращением к игроку.
     //Повышает уровень, вместе с выбором характеристики для роста.

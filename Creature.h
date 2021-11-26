@@ -44,6 +44,7 @@ class ICreature{
         void set_luck(int val);
         void set_int(int val);
         void set_perc(int val);
+        void set_pos(position new_pos);
 
         void init_move_points();//Инициализирует очки движения на основе характеристик. Ловкости, например.
 

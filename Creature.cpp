@@ -79,6 +79,9 @@ void ICreature::set_int(int val){
 void ICreature::set_perc(int val){
     stats[5] = val;
 };
+void ICreature::set_pos(position new_pos){
+    pos = new_pos;
+}
 
 void ICreature::init_move_points(){
     move_points = stats[3]/2 + 1;
@@ -102,7 +105,7 @@ void Test_creature::move(position direction){
     position new_pos;
     new_pos.x = pos.x + direction.x;
     new_pos.y = pos.y + direction.y;
-    //global_map.map_monster_update(pos, new_pos); //TODO: error on function call
+    global_map.map_monster_update(pos, new_pos, marker);
     pos = new_pos;
 };
 

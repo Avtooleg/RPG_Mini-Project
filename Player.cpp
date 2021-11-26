@@ -16,9 +16,10 @@
 #define VK_SPACE    0x1C
 #endif
 
-Player::Player(ICreature &creature): race(creature){
+Player::Player(ICreature &creature, position init_pos): race(creature) {
     xp = 0;
     level = 1;
+    race.set_pos(init_pos);
 }
 
 Player::~Player(){
@@ -102,7 +103,7 @@ void Player::do_turn() {
     static const std::vector<std::string> names = {"strength(s)", "stamina(t)", "agility(a)", "luck(l)", "intellect(i)", "perception(p)"};
     //Обработка ответа игрока
     char ch = get_player_input(keys);
-    position direction;
+    position direction{0,0};
     switch (ch){
             case VK_UP: {
                 direction.y = -1;

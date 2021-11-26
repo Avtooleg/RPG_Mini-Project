@@ -2,6 +2,7 @@
 #include "Utils.h"
 #include "Creature.h"
 #include "Player.h"
+#include <iostream>
 
 position get_random_position(int map_size, int forbidden_rad, position center){
     float randx = static_cast<float> (get_random_int(-max_def, max_def)/max_def); //Число между минус единицей и единицей
@@ -14,12 +15,12 @@ position get_random_position(int map_size, int forbidden_rad, position center){
     return pos;
 }
 
-void Map::add_monsters(char marker, int forbidden_rad, position center, std::vector<ICreature> &monsters){
+void Map::add_monsters(char marker, int forbidden_rad, position center, std::vector<ICreature*> &monsters){
     for(int i = 0; i<monsters.size(); i++){
         while(true) {
             position pos = get_random_position(map_size, forbidden_rad, center);
             if (!is_in(Map::get_init_value(pos), forbidden_chars)) {
-                ICreature *monster = &monsters[i];
+                ICreature *monster = monsters[i];
                 my_map[pos.y][pos.x] = marker;
                 my_monsters.insert({pos, monster});
                 break;
@@ -28,13 +29,7 @@ void Map::add_monsters(char marker, int forbidden_rad, position center, std::vec
     }
 }
 
-Map::Map(space _map,
-         std::vector<ICreature> &low_level,
-         std::vector<ICreature> &middle_level,
-         std::vector<ICreature> &high_level,
-         int low_rad,
-         int middle_rad,
-         int high_rad){
+Map::Map(space _map){
     //Генерация случайного места для слабых мобов. Игрок на старте в центре
     my_start_map = _map;
     my_map = _map;
@@ -42,12 +37,14 @@ Map::Map(space _map,
     position center;
     center.x = map_size/2;
     center.y = map_size/2;
+    map_center = center;
 
     my_map[center.y][center.x] = 'P';
 
-    add_monsters('W', low_rad, center, low_level);
+    //Some problems with generating map and monsters because of cross-reference
+    /*add_monsters('W', low_rad, center, low_level);
     add_monsters('A', middle_rad, center, middle_level);
-    add_monsters('S', high_rad, center, high_level);
+    add_monsters('S', high_rad, center, high_level);*/
 }
 
 char Map::get_value(position pos) {
@@ -60,14 +57,22 @@ char Map::get_init_value(position pos) {
 
 space Map::get_area (position pos, int rad){
     space area;
-    for (int y = pos.y-rad; y <= pos.y+rad; y++){
+    for (int y = std::max(pos.y-rad, 0);
+    y <= std::min(pos.y+rad, map_size - 1); y++)
+    {
         std::string str = "";
-        for(int x = pos.x - rad; x <= pos.x + rad; x++){
+        for(int x = std::max(pos.x - rad, 0);
+        x <= std::min(pos.x + rad, static_cast<int> (my_start_map[0].size() - 1)); x++)
+        {
             str += my_map[y][x];
         }
         area.push_back(str);
     }
     return area;
+}
+
+position Map::get_center() {
+    return map_center;
 }
 
 void Map::map_update(std::vector<ICreature> &creatures, Player player) {
