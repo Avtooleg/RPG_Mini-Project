@@ -35,6 +35,7 @@ class ICreature{
         position get_pos(); // Положение в пространстве
         char get_marker(); // Значок на карте ('W' - слабый, 'S' - сильный и т.д.)
         int get_move_points(); // Возвращает move_points - очки движения
+        Map* get_map();
 
         //Сеттеры
         void set_hp(int val);
@@ -48,7 +49,9 @@ class ICreature{
 
         void init_move_points();//Инициализирует очки движения на основе характеристик. Ловкости, например.
 
-        virtual ~ICreature() = default;
+        virtual int get_xp_given();
+
+        virtual ~ICreature();
 
     protected:
 
@@ -60,7 +63,7 @@ class ICreature{
         Map &global_map;
         position pos; //Положение на карте
         char marker;  //Собственно, значок
-
+        //TODO: make something about how much xp is gotten
 };
 
 //Тестовый зверь, нужен был для попытки запустить все это дело, но, увы - ошибки интеграции
@@ -72,9 +75,9 @@ class Test_creature : public ICreature{
 
     //void move(position direction) override;
     void do_turn();
-    void attack(ICreature &target);
+    //TODO: add own get_xp_given function
 
-    ~Test_creature() = default;
+    ~Test_creature();
 };
 
 #endif //RPG_MINIPROJECT_CREATURE_H

@@ -71,6 +71,16 @@ void map_output(Map &map, position center, int rad){
     }
 }
 
+void stats_name_output(std::string name, std::vector<int> &stats, int hp){
+    static const std::vector<std::string> names = {"s", "t", "a", "l", "i", "p"};
+    std::cout << "M " << name << ' ' << "hp " << hp << ' ';
+    //Вывод вариантов
+    for(int i = 0; i < stats.size(); i++){
+        std::cout << names[i] << ": " << stats[i] << " ";
+    }
+    std::cout << '\n';
+}
+
 void clear_console(){
 
         HANDLE                     hStdOut;

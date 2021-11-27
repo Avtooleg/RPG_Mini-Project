@@ -27,9 +27,11 @@ public:
     void set_hp(int val);
     //Передвижение. С учетом обновлений в карте (универсальность перемещения значка),
     //возможно, будет убран и заменён обращению к race.
+    void set_xp(int val);
     void move(position direction);
 
     //Геттеры
+    int get_xp(); //Опыт
     int get_hp(); //Здоровье
     int get_str(); //Сила
     int get_stam(); // Выносливость

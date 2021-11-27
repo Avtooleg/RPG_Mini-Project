@@ -3,10 +3,30 @@
 
 std::mt19937 mersenne(time(NULL));
 
-int get_damage(ICreature &creature){
-    creature.set_hp(creature.get_hp() - 1);
-    return 0;
-};//TODO: return some damage value
+bool luck_check(int luck){
+    return luck > get_random_int(0, std::max(luck + 4, 8)); //Some amortization, so there won't be only crits
+}
+
+damage_result get_damage(ICreature* predator, ICreature* target){
+    if (luck_check(target->get_luck()*target->get_agil())){
+        return damage_result{0, Attack_results::EVADED};
+    }
+    int defence = static_cast<int>(target->get_str()*1.8);
+    bool crit = luck_check(predator->get_luck());
+    int attack = predator->get_str()*(2 + crit*2);
+
+    if (defence > attack){
+        return damage_result{0, Attack_results::DEFENDED};
+    }
+    else {
+        if (crit){
+            return damage_result{attack, Attack_results::CRIT};
+        }
+        else{
+            return damage_result{attack, Attack_results::HIT};
+        }
+    }
+};
 
 bool position::operator<(position pos) const {
     return (x * x + y * y < pos.x * pos.x + pos.y * pos.y);

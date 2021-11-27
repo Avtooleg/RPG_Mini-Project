@@ -16,6 +16,8 @@ std::vector<std::string> load_map(std::string filename);
 char get_player_input(const std::vector<int> &keys);
 //Выводит кусок карты rad*rad вокруг center
 void map_output(Map &map, position center, int rad);
+//Выводит характеристики монстрятины вида: str 1, stam 4...
+void stats_name_output(std::string name, std::vector<int> &stats, int hp);
 
 void clear_console();
 #endif //RPG_MINIPROJECT_FRONTEND_H

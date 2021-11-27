@@ -34,17 +34,20 @@ public:
     char get_value(position pos);//Возвращает клетку на коорд. pos на текущей карте
     //Размещает монстров monsters с значком marker с заданной
     //запрещенной зоной forbidden_rad вокруг center
-    void add_monsters(char marker, int forbidden_rad, position center, std::vector<ICreature*> &monsters);
+    void add_monsters(int forbidden_rad, position center, std::vector<ICreature*> &monsters);
     //Добавляет ссылку на игрока
     void add_player(Player &player);
+    //Добавляет монстров по их собственным координатам и маркерам
+    void add_positional_monsters(std::vector<ICreature*> monsters);
     //Возвращает позицию игрока
     position get_player_pos();
     //Обновляет всю карту с учетом текущего положения всех существ
+    std::vector<ICreature*> get_monsters_around(position center);
     //(изначальная идея обновления карты
     void map_update(std::vector<ICreature> &creatures, Player player);
     //Разово сдвигает одного монстра (игрока)
     //(более новая идея обновления карты, так сказать, in real time)
-    void map_monster_update(position old_pos, position new_pos, char marker);
+    void map_monster_update(bool deletion,  char marker, position *old_pos, position *new_pos = NULL);
     //Выдаёт центр карты
     position get_center();
 

@@ -15,14 +15,14 @@ position get_random_position(int map_size, int forbidden_rad, position center){
     return pos;
 }
 
-void Map::add_monsters(char marker, int forbidden_rad, position center, std::vector<ICreature*> &monsters){
+void Map::add_monsters(int forbidden_rad, position center, std::vector<ICreature*> &monsters){
     for(int i = 0; i<monsters.size(); i++){
         while(true) {
             position pos = get_random_position(map_size, forbidden_rad, center);
             if (!is_in(Map::get_init_value(pos), forbidden_chars)) {
                 ICreature *monster = monsters[i];
                 monster->set_pos(pos);
-                my_map[pos.y][pos.x] = marker;
+                my_map[pos.y][pos.x] = monster->get_marker();
                 my_monsters.insert({pos, monster});
                 break;
             }
@@ -32,6 +32,15 @@ void Map::add_monsters(char marker, int forbidden_rad, position center, std::vec
 
 void Map::add_player(Player &player) {
     my_player = &player;
+}
+
+void Map::add_positional_monsters(std::vector<ICreature *> monsters) {
+    for(int i = 0; i<monsters.size(); i++){
+        ICreature *monster = monsters[i];
+        position pos = monster->get_pos();
+        my_map[pos.y][pos.x] = monster->get_marker();
+        my_monsters.insert({pos, monster});
+    }
 }
 
 Map::Map(space _map){
@@ -89,6 +98,28 @@ position Map::get_player_pos() {
     return my_player->get_pos();
 }
 
+std::vector<ICreature*> Map::get_monsters_around(position center){
+    std::vector<ICreature*> found_monsters = {};
+    position curr_pos;
+    static const int low = 0x0001;
+    static const int high = 0x0002;
+    std::cout << "x  y\n";
+    for(int i = 0; i<4; i++){
+        bool  low_bit = i & low;
+        bool high_bit = i & high;
+        curr_pos.x = center.x + high_bit*(low_bit - !low_bit);
+        curr_pos.y = center.y + !high_bit*(low_bit - !low_bit);
+        std::cout << curr_pos.x << ' ' << curr_pos.y << '\n';
+        if(my_monsters.find(curr_pos) != my_monsters.end()){
+            found_monsters.push_back(my_monsters[curr_pos]);
+        }
+        else{
+            found_monsters.push_back(NULL);
+        }
+    }
+    return found_monsters;
+}
+
 void Map::map_update(std::vector<ICreature> &creatures, Player player) {
     my_map = my_start_map;
     my_monsters.clear();
@@ -102,12 +133,16 @@ void Map::map_update(std::vector<ICreature> &creatures, Player player) {
     my_map[player_pos.y][player_pos.x];
 }
 
-void Map::map_monster_update(position old_pos, position new_pos, char marker){
+void Map::map_monster_update(bool deletion, char marker, position *old_pos, position *new_pos){
     if (marker != 'P') {
-        ICreature *monster = my_monsters[old_pos];
-        my_monsters.erase(old_pos);
-        my_monsters.insert({new_pos, monster});
+        ICreature *monster = my_monsters[*old_pos];
+        my_monsters.erase(*old_pos);
+        if (!deletion) {
+            my_monsters.insert({*new_pos, monster});
+        }
     };
-    my_map[old_pos.y][old_pos.x] = my_start_map[old_pos.y][old_pos.x];
-    my_map[new_pos.y][new_pos.x] = marker;
+    my_map[old_pos->y][old_pos->x] = my_start_map[old_pos->y][old_pos->x];
+    if (!deletion) {
+        my_map[new_pos->y][new_pos->x] = marker;
+    }
 }
