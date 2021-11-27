@@ -13,7 +13,7 @@ struct position;
 class Player{
 public:
 
-    Player(ICreature &creature, position init_pos);
+    Player(ICreature *creature, position init_pos);
 
     void do_turn();//Аналог do_turn() у ICreature, но с обращением к игроку.
     //Повышает уровень, вместе с выбором характеристики для роста.
@@ -29,13 +29,24 @@ public:
     //возможно, будет убран и заменён обращению к race.
     void move(position direction);
 
-    position get_pos(); //Получение положения в пространстве
+    //Геттеры
+    int get_hp(); //Здоровье
+    int get_str(); //Сила
+    int get_stam(); // Выносливость
+    int get_agil(); // Ловкость
+    int get_luck(); // Удача
+    int get_int(); // Интеллект
+    int get_perc(); // Восприятие
+    std::vector<int> get_stats(); // Получить весь массив
+    position get_pos(); // Положение в пространстве
+    char get_marker(); // Значок на карте ('W' - слабый, 'S' - сильный и т.д.)
+    int get_move_points(); // Возвращает move_points - очки движения
 
     ~Player();
 
 private:
 
-    ICreature &race; //Раса (существо). Отвечает за характеристики и "персонажность" игрока
+    ICreature* race; //Раса (существо). Отвечает за характеристики и "персонажность" игрока
     int level;
     int xp;
 

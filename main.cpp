@@ -13,7 +13,7 @@ void quit(){
 }
 
 int main() {
-    std::vector<int> stats = {1, 1, 1, 1, 1, 1};
+    std::vector<int> stats = {1, 1, 1, 1, 1, 2};
     space _map = {
             "^^###^%%%#",
             "^#####%%##",
@@ -31,18 +31,18 @@ int main() {
     std::vector<ICreature*> creatures = {test};
     std::vector<ICreature*> pass_vec = {};
     global_map.add_monsters('M', 3, global_map.get_center(), creatures);
-    Test_creature race('P', stats, global_map);
+    Test_creature* race = new Test_creature('P', stats, global_map);
     Player player(race, global_map.get_center());
     while(run){
-        map_output(global_map, player.get_pos(), 2);
+        int view_rad = get_view_dist(player.get_perc());
+        map_output(global_map, player.get_pos(), view_rad);
         for (int i = 0; i < creatures.size(); i++){
             Sleep(500);
-            clear_console();
             creatures[i]->do_turn();
-            map_output(global_map, player.get_pos(), 2);
+            map_output(global_map, player.get_pos(), view_rad);
         }
         player.do_turn();
-        map_output(global_map, player.get_pos(), 2);
+        map_output(global_map, player.get_pos(), view_rad);
     }
     return 0;
 }

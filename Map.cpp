@@ -5,8 +5,8 @@
 #include <iostream>
 
 position get_random_position(int map_size, int forbidden_rad, position center){
-    float randx = static_cast<float> (get_random_int(-max_def, max_def)/max_def); //Число между минус единицей и единицей
-    float randy = static_cast<float> (get_random_int(-max_def, max_def)/max_def);
+    float randx = static_cast<float> (get_random_int(-max_def, max_def))/max_def; //Число между минус единицей и единицей
+    float randy = static_cast<float> (get_random_int(-max_def, max_def))/max_def;
     int dx = static_cast<int> (randx*(map_size/2 - forbidden_rad) + sign(randx)*forbidden_rad); //Проецирование на отрезок [forbidden_rad, map_size/2]
     int dy = static_cast<int> (randy*(map_size/2 - forbidden_rad) + sign(randy)*forbidden_rad);
     position pos;
@@ -21,6 +21,7 @@ void Map::add_monsters(char marker, int forbidden_rad, position center, std::vec
             position pos = get_random_position(map_size, forbidden_rad, center);
             if (!is_in(Map::get_init_value(pos), forbidden_chars)) {
                 ICreature *monster = monsters[i];
+                monster->set_pos(pos);
                 my_map[pos.y][pos.x] = marker;
                 my_monsters.insert({pos, monster});
                 break;
@@ -73,6 +74,10 @@ space Map::get_area (position pos, int rad){
 
 position Map::get_center() {
     return map_center;
+}
+
+int Map::get_size(){
+    return map_size;
 }
 
 void Map::map_update(std::vector<ICreature> &creatures, Player player) {

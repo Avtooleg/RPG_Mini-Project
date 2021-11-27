@@ -10,7 +10,8 @@ class Map;
 struct position;
 
 //Список неполный. Ожидаются ещё, как минимум, стартовый и конечный экраны, а также очистка консоли.
-
+//Подгружает карту из файла
+std::vector<std::string> load_map(std::string filename);
 //Ожидает нажатия клавишы из keys, и возвращает нажатую. Рассчитан на windows
 char get_player_input(const std::vector<int> &keys);
 //Выводит кусок карты rad*rad вокруг center

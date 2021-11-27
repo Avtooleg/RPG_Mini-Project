@@ -16,20 +16,54 @@
 #define VK_SPACE    0x1C
 #endif
 
-Player::Player(ICreature &creature, position init_pos): race(creature) {
+Player::Player(ICreature *creature, position init_pos): race(creature) {
     xp = 0;
     level = 1;
-    race.set_pos(init_pos);
+    race->set_pos(init_pos);
 }
 
+int Player::get_hp(){
+    return race->get_hp();
+};
+int Player::get_str(){
+    return race->get_str();
+};
+int Player::get_stam(){
+    return race->get_stam();
+};
+int Player::get_agil(){
+    return race->get_agil();
+};
+int Player::get_luck(){
+    return race->get_luck();
+};
+int Player::get_int(){
+    return race->get_int();
+};
+int Player::get_perc(){
+    return race->get_perc();
+};
+std::vector<int> Player::get_stats(){
+    return race->get_stats();
+};
+position Player::get_pos(){
+    return race->get_pos();
+};
+char Player::get_marker(){
+    return race->get_marker();
+};
+int Player::get_move_points(){
+    return race->get_move_points();
+};
+
 Player::~Player(){
-    delete &race;
+    delete race;
 }
 
 void Player::level_up(){
     level += level;
     static const std::vector<int> keys = {'S', 'T', 'A', 'L', 'I', 'P'};
-    std::vector<int> stats = race.get_stats();
+    std::vector<int> stats = race->get_stats();
     static const std::vector<std::string> names = {"strength(s)", "stamina(t)", "agility(a)", "luck(l)", "intellect(i)", "perception(p)"};
     std::cout << "You have got a level up! Now, you need to decide,\nWhat will you train?";
     //Вывод вариантов
@@ -48,56 +82,52 @@ void Player::level_up(){
     char ch = get_player_input(keys);
     switch(ch) {
         case 'S':
-            race.set_str(race.get_str() + 1);
-            std::cout << "Your strength is now " << race.get_str() << " !\n";
+            race->set_str(race->get_str() + 1);
+            std::cout << "Your strength is now " << race->get_str() << " !\n";
             break;
         case 'T':
-            race.set_stam(race.get_stam() + 1);
-            std::cout << "Your stamina is now " << race.get_str() << " !\n";
+            race->set_stam(race->get_stam() + 1);
+            std::cout << "Your stamina is now " << race->get_str() << " !\n";
             break;
         case 'A':
-            race.set_agil(race.get_agil() + 1);
-            std::cout << "Your agility is now " << race.get_str() << " !\n";
+            race->set_agil(race->get_agil() + 1);
+            std::cout << "Your agility is now " << race->get_str() << " !\n";
             break;
         case 'L':
-            race.set_luck(race.get_luck() + 1);
-            std::cout << "Your luck is now " << race.get_str() << " !\n";
+            race->set_luck(race->get_luck() + 1);
+            std::cout << "Your luck is now " << race->get_str() << " !\n";
             break;
         case 'I':
-            race.set_int(race.get_int() + 1);
-            std::cout << "Your intellect is now " << race.get_str() << " !\n";
+            race->set_int(race->get_int() + 1);
+            std::cout << "Your intellect is now " << race->get_str() << " !\n";
             break;
         case 'P':
-            race.set_perc(race.get_perc() + 1);
-            std::cout << "Your perception is now " << race.get_str() << " !\n";
+            race->set_perc(race->get_perc() + 1);
+            std::cout << "Your perception is now " << race->get_str() << " !\n";
             break;
     }
 }
 
 void Player::attack(ICreature &target) {
-    target.set_hp(target.get_hp() - get_damage(race));
+    target.set_hp(target.get_hp() - get_damage(*race));
 }
 
 void Player::set_hp(int val){
-    race.set_hp(val);
+    race->set_hp(val);
 }
 
 void Player::move(position direction){
-    if(race.get_move_points() > 0){
-        race.move(direction);
+    if(race->get_move_points() > 0){
+        race->move(direction);
     }
     else{
         std::cout << "You are out of moves!\n";
     }
 }
 
-position Player::get_pos(){
-    return race.get_pos();
-}
-
 void Player::do_turn() {
     //Добавляем очки движения на этот ход
-    race.init_move_points();
+    race->init_move_points();
     //Возможные варианты действий(клавиши)
     static const std::vector<int> keys = {VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, VK_SPACE, 'Q', 'I', 'D'};
     static const std::vector<std::string> names = {"strength(s)", "stamina(t)", "agility(a)", "luck(l)", "intellect(i)", "perception(p)"};
@@ -127,7 +157,7 @@ void Player::do_turn() {
             }
             //Вывести характеристики
             case 'I': {
-                std::vector<int> stats = race.get_stats();
+                std::vector<int> stats = race->get_stats();
                 for (int i = 0; i < stats.size(); i++) {
                     std::cout << "Your " << names[i] << ": " << stats[i] << "\n";
                 }

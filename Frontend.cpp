@@ -4,6 +4,8 @@
 
 #include "Utils.h"
 #include "Map.h"
+#include <string>
+#include <fstream>
 
 #if defined _WIN32
 #include <windows.h>
@@ -26,6 +28,29 @@
     }
 };*/
 
+space load_map(std::string filename){
+    std::ifstream map_file(filename);
+    space loaded_map;
+    if (!map_file.is_open()){
+        std::cout << "Map cannot be loaded - wrong name!";
+    }
+    else{
+        bool see = true;
+        while(see){
+            if (map_file.eof()){
+                break;
+            }
+            else{
+                char new_str[100];
+                map_file.getline(new_str, 100);
+                loaded_map.push_back(new_str);
+            }
+        }
+    }
+    map_file.close();
+    return loaded_map;
+}
+
 char get_player_input(const std::vector<int> &keys){
     bool see = true;
     while(see) {
@@ -39,6 +64,7 @@ char get_player_input(const std::vector<int> &keys){
 }
 
 void map_output(Map &map, position center, int rad){
+    clear_console();
     space area = map.get_area(center, rad);
     for (int i = 0; i < area.size(); i++){
         std::cout << area[i] << '\n';

@@ -20,8 +20,12 @@ void ICreature::move(position direction){
     position new_pos;
     new_pos.x = pos.x + direction.x;
     new_pos.y = pos.y + direction.y;
-    //global_map.map_monster_update(pos, new_pos); //TODO: error on function call
-    pos = new_pos;
+    if (new_pos.x >= global_map.get_size() || new_pos.y >= global_map.get_size()){
+    }
+    else {
+        global_map.map_monster_update(pos, new_pos, marker);
+        pos = new_pos;
+    }
 };
 int ICreature::get_hp(){
     return hp;
@@ -101,13 +105,18 @@ void Test_creature::attack(ICreature &target) {
 
 //Перегружает движение. Костыль. Была та же ошибка, что сейчас в do_turn()
 //у init_move_points()
+/*
 void Test_creature::move(position direction){
     position new_pos;
     new_pos.x = pos.x + direction.x;
     new_pos.y = pos.y + direction.y;
-    global_map.map_monster_update(pos, new_pos, marker);
-    pos = new_pos;
-};
+    if (new_pos.x >= global_map.get_size() || new_pos.y >= global_map.get_size()){
+    }
+    else {
+        global_map.map_monster_update(pos, new_pos, marker);
+        pos = new_pos;
+    }
+};*/
 
 //Тестовый вариант, без особого смысла
 void Test_creature::do_turn(){

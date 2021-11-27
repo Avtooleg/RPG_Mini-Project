@@ -29,6 +29,7 @@ public:
 
     //Возвращает "срез" карты размером rad*rad вокруг pos (ограничивает видимость игрока)
     space get_area (position pos, int rad);
+    int get_size(); // Возвращает размер карты
     char get_init_value(position pos);//Возвращает клетку на коорд. pos на "пустой" карте (без существ)
     char get_value(position pos);//Возвращает клетку на коорд. pos на текущей карте
     //Размещает монстров monsters с значком marker с заданной

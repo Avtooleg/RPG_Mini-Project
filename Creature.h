@@ -70,7 +70,7 @@ class Test_creature : public ICreature{
 
     Test_creature(char mark, std::vector<int> init_stats, Map &init_map);
 
-    void move(position direction);
+    //void move(position direction) override;
     void do_turn();
     void attack(ICreature &target);
 
