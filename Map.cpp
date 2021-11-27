@@ -30,6 +30,10 @@ void Map::add_monsters(char marker, int forbidden_rad, position center, std::vec
     }
 }
 
+void Map::add_player(Player &player) {
+    my_player = &player;
+}
+
 Map::Map(space _map){
     //Генерация случайного места для слабых мобов. Игрок на старте в центре
     my_start_map = _map;
@@ -41,6 +45,7 @@ Map::Map(space _map){
     map_center = center;
 
     my_map[center.y][center.x] = 'P';
+    my_player = NULL;
 
     //Some problems with generating map and monsters because of cross-reference
     /*add_monsters('W', low_rad, center, low_level);
@@ -78,6 +83,10 @@ position Map::get_center() {
 
 int Map::get_size(){
     return map_size;
+}
+
+position Map::get_player_pos() {
+    return my_player->get_pos();
 }
 
 void Map::map_update(std::vector<ICreature> &creatures, Player player) {

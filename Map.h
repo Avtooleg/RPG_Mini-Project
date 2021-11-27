@@ -35,6 +35,10 @@ public:
     //Размещает монстров monsters с значком marker с заданной
     //запрещенной зоной forbidden_rad вокруг center
     void add_monsters(char marker, int forbidden_rad, position center, std::vector<ICreature*> &monsters);
+    //Добавляет ссылку на игрока
+    void add_player(Player &player);
+    //Возвращает позицию игрока
+    position get_player_pos();
     //Обновляет всю карту с учетом текущего положения всех существ
     //(изначальная идея обновления карты
     void map_update(std::vector<ICreature> &creatures, Player player);
@@ -51,6 +55,7 @@ private:
     space my_start_map;//"Пустая" карты
     space my_map;//Текущая карта
     std::map<position, ICreature*> my_monsters;//словарь (место -> существо). Нужен для выбора цели атаки (чтобы всех не обзванивать).
+    Player *my_player; //указатель на игрока, для доступа остальных существ
 
 };
 

@@ -33,6 +33,7 @@ int main() {
     global_map.add_monsters('M', 3, global_map.get_center(), creatures);
     Test_creature* race = new Test_creature('P', stats, global_map);
     Player player(race, global_map.get_center());
+    global_map.add_player(player);
     while(run){
         int view_rad = get_view_dist(player.get_perc());
         map_output(global_map, player.get_pos(), view_rad);
