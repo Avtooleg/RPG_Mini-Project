@@ -46,6 +46,7 @@ class ICreature{
         void set_int(int val);
         void set_perc(int val);
         void set_pos(position new_pos);
+        virtual void update_hp();
 
         void init_move_points();//Инициализирует очки движения на основе характеристик. Ловкости, например.
 
@@ -76,6 +77,8 @@ class Test_creature : public ICreature{
     //void move(position direction) override;
     void do_turn();
     //TODO: add own get_xp_given function
+
+    void update_hp();
 
     ~Test_creature();
 };

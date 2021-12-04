@@ -9,10 +9,6 @@ public:
 
     void chase()
     void roam()
-    
-    
-    position get_pos();
-
 
 private:
     int xp;

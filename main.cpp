@@ -14,8 +14,19 @@ void quit(){
 
 int main() {
     // str, stam, agil, luck, int, perc
-    std::vector<int> stats = {1, 1, 4, 1, 1, 2};
-    space _map = {
+
+    const int low_count = 5;
+    const int aver_count = 4;
+    const int high_count = 2;
+    const int low_stat_sum = 10;
+    const int aver_stat_sum = 15;
+    const int high_stat_sum = 20;
+    const int low_rad = 2;
+    const int aver_rad = 3;
+    const int high_rad = 4;
+    const std::vector<int> player_stats = {1, 1, 4, 1, 1, 2};
+    space _map = load_map("MAP2.txt");
+    /*const space _map = {
             "^^###^%%%#",
             "^#####%%##",
             "^^#####%##",
@@ -26,31 +37,21 @@ int main() {
             "%%%####%%%",
             "%######%%#",
             "^^####^^^^"
-    };
+    };*/
+    std::vector<char> forbidden_chars = {'L', 'A', 'M', 'P', 'S'};
     Map global_map = Map(_map);
-    Test_creature *test = new Test_creature('M', stats, global_map);
-    std::vector<ICreature*> creatures = {test};
-    std::vector<ICreature*> pass_vec = {};
-    global_map.add_monsters(3, global_map.get_center(), creatures);
-    Test_creature* race = new Test_creature('P', stats, global_map);
+    std::vector<ICreature*> low_level = get_monsters_group(low_count, low_stat_sum, 3, 'L', &global_map);
+    std::vector<ICreature*> aver_level = get_monsters_group(aver_count, aver_stat_sum, 3, 'A', &global_map);
+    std::vector<ICreature*> high_level = get_monsters_group(high_count, high_stat_sum, 3, 'S', &global_map);
+    global_map.add_monsters(low_rad, global_map.get_center(), low_level);
+    global_map.add_monsters(aver_rad, global_map.get_center(), aver_level);
+    global_map.add_monsters(high_rad, global_map.get_center(), high_level);
+    std::vector<ICreature*> creatures = low_level;
+    creatures.insert(creatures.end(), aver_level.begin(), aver_level.end());
+    creatures.insert(creatures.end(), high_level.begin(), high_level.end());
+    Test_creature* race = new Test_creature('P', player_stats, global_map);
     Player player(race, global_map.get_center());
     global_map.add_player(player);
-    //Just a test from here
-    std::vector<ICreature*> attack_level_up_test;
-    position curr_pos;
-    static const int low = 0x0001;
-    static const int high = 0x0002;
-    for(int i = 0; i<4; i++) {
-        bool low_bit = i & low;
-        bool high_bit = i & high;
-        curr_pos.x = global_map.get_center().x + high_bit * (low_bit - !low_bit);
-        curr_pos.y = global_map.get_center().y + !high_bit * (low_bit - !low_bit);
-        Test_creature *xp_bag = new Test_creature('M', stats, global_map);
-        xp_bag->set_pos(curr_pos);
-        attack_level_up_test.push_back(xp_bag);
-    }
-    global_map.add_positional_monsters(attack_level_up_test);
-    //To here
     try {
         while (run) {
             int view_rad = get_view_dist(player.get_perc());
@@ -59,12 +60,13 @@ int main() {
                 Sleep(500);
                 creatures[i]->do_turn();
                 map_output(global_map, player.get_pos(), view_rad);
+                std::cout << '\n';
             }
             player.do_turn();
         }
     }
     catch(Exceptions QUIT){
-        run = false;
+        run = true;
     }
     return 0;
 }

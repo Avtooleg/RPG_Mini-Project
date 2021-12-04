@@ -29,7 +29,27 @@ damage_result get_damage(ICreature* predator, ICreature* target){
 };
 
 bool position::operator<(position pos) const {
-    return (x * x + y * y < pos.x * pos.x + pos.y * pos.y);
+    return (x*x + y*y > pos.x*pos.x + pos.y*pos.y)
+    || (x/(y+1) > pos.x/(pos.y+1));
+}
+
+position position::operator-(position pos) const{
+    position result{x - pos.x, y - pos.y};
+    return result;
+}
+
+position position::operator+(position pos) const{
+    position result{x + pos.x, y + pos.y};
+    return result;
+}
+
+position position::operator*(float scale) const {
+    position result{static_cast<int>(x*scale), static_cast<int>(y*scale)};
+    return result;
+}
+
+float abs(position pos){
+    return sqrt(pos.x*pos.x + pos.y*pos.y);
 }
 
 int sign(float val){
@@ -49,4 +69,17 @@ int get_random_int(int min, int max){
 
 int get_view_dist(int perc){
     return static_cast<int>(cbrt(perc)*2);
+}
+
+std::vector<ICreature*> get_monsters_group(int quantity, float stat_sum, int deviation, char marker, Map* map){
+    std::vector<ICreature*> monsters;
+    for (int i=0; i < quantity; i++){
+        std::vector<int> stats;
+        for (int j=0; j < 6; j++){
+            stats.push_back(get_random_int((stat_sum-deviation)/(6 - j), (stat_sum+deviation)/(6 - j)));
+            stat_sum -= stats[j];
+        }
+        monsters.push_back(new Test_creature(marker, stats, *map));
+    }
+    return monsters;
 }

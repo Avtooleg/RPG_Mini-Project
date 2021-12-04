@@ -41,6 +41,7 @@ public:
     void add_positional_monsters(std::vector<ICreature*> monsters);
     //Возвращает позицию игрока
     position get_player_pos();
+    ICreature* get_player_race_pointer();
     //Обновляет всю карту с учетом текущего положения всех существ
     std::vector<ICreature*> get_monsters_around(position center);
     //(изначальная идея обновления карты

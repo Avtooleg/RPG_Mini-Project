@@ -43,6 +43,7 @@ public:
     position get_pos(); // Положение в пространстве
     char get_marker(); // Значок на карте ('W' - слабый, 'S' - сильный и т.д.)
     int get_move_points(); // Возвращает move_points - очки движения
+    ICreature* get_race_pointer(); // Возвращает ссылку на расу
 
     ~Player();
 

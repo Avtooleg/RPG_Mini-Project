@@ -60,6 +60,10 @@ int Player::get_move_points(){
     return race->get_move_points();
 };
 
+ICreature* Player::get_race_pointer() {
+    return race;
+};
+
 Player::~Player(){
     delete race;
 }
@@ -120,6 +124,7 @@ void Player::attack(ICreature &target) {
             delete &target;
             if (xp > (level-1)*75 + 30){
                 level_up();
+                race->update_hp();
             }
         }
     }
@@ -138,7 +143,12 @@ void Player::set_xp(int val){
 
 void Player::move(position direction){
     if(race->get_move_points() > 0){
-        race->move(direction);
+        if(!is_in(race->get_map()->get_value(race->get_pos() + direction), forbidden_chars)) {
+            race->move(direction);
+        }
+        else{
+            std::cout << "You can't go there!";
+        }
     }
     else{
         std::cout << "You are out of moves!\n";
@@ -209,60 +219,60 @@ void Player::do_turn() {
                 break;
             }
             case VK_SPACE: {
-                std::cout << "You are in attack mode\n";
-                std::cout << "Please choose a target\n";
-                static const std::vector<std::string> directions = {"up", "down", "left", "right"};
-                static const std::vector<int> att_keys = {VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT};
-                std::vector<ICreature *> monsters = race->get_map()->get_monsters_around(get_pos());
-                if (monsters[0] != NULL || monsters[1] != NULL || monsters[2] != NULL || monsters[3] != NULL ) {
-                    for (int i = 0; i < monsters.size(); i++) {
-                        if (monsters[i] != NULL) {
-                            std::vector<int> monster_stats = monsters[i]->get_stats();
-                            stats_name_output(directions[i], monster_stats, monsters[i]->get_hp());
+                if(get_move_points() > 0) {
+                    std::cout << "You are in attack mode\n";
+                    std::cout << "Please choose a target\n";
+                    static const std::vector<std::string> directions = {"up", "down", "left", "right"};
+                    static const std::vector<int> att_keys = {VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT};
+                    std::vector<ICreature *> monsters = race->get_map()->get_monsters_around(get_pos());
+                    if (monsters[0] != NULL || monsters[1] != NULL || monsters[2] != NULL || monsters[3] != NULL) {
+                        for (int i = 0; i < monsters.size(); i++) {
+                            if (monsters[i] != NULL) {
+                                std::vector<int> monster_stats = monsters[i]->get_stats();
+                                stats_name_output(directions[i], monster_stats, monsters[i]->get_hp());
+                            }
                         }
-                    }
-                    char att_ch = get_player_input(att_keys);
-                    switch (att_ch) {
-                        case VK_UP: {
-                            if(monsters[0] != NULL) {
-                                attack(*monsters[0]);
+                        char att_ch = get_player_input(att_keys);
+                        switch (att_ch) {
+                            case VK_UP: {
+                                if (monsters[0] != NULL) {
+                                    attack(*monsters[0]);
+                                } else {
+                                    std::cout << "There is no one here!";
+                                }
+                                break;
                             }
-                            else{
-                                std::cout << "There is no one here!";
+                            case VK_DOWN: {
+                                if (monsters[1] != NULL) {
+                                    attack(*monsters[1]);
+                                } else {
+                                    std::cout << "There is no one here!";
+                                }
+                                break;
                             }
-                            break;
+                            case VK_LEFT: {
+                                if (monsters[2] != NULL) {
+                                    attack(*monsters[2]);
+                                } else {
+                                    std::cout << "There is no one here!";
+                                }
+                                break;
+                            }
+                            case VK_RIGHT: {
+                                if (monsters[3] != NULL) {
+                                    attack(*monsters[3]);
+                                } else {
+                                    std::cout << "There is no one here!";
+                                }
+                                break;
+                            }
                         }
-                        case VK_DOWN: {
-                            if(monsters[1] != NULL) {
-                                attack(*monsters[1]);
-                            }
-                            else{
-                                std::cout << "There is no one here!";
-                            }
-                            break;
-                        }
-                        case VK_LEFT: {
-                            if(monsters[2] != NULL) {
-                                attack(*monsters[2]);
-                            }
-                            else{
-                                std::cout << "There is no one here!";
-                            }
-                            break;
-                        }
-                        case VK_RIGHT: {
-                            if(monsters[3] != NULL) {
-                                attack(*monsters[3]);
-                            }
-                            else{
-                                std::cout << "There is no one here!";
-                            }
-                            break;
-                        }
+                    } else {
+                        std::cout << "There is no one here!";
                     }
                 }
-                else {
-                    std::cout << "There is no one here!";
+                else{
+                    std::cout << "You are out of moves!";
                 }
                 Sleep(2000);
                 break;

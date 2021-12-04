@@ -98,6 +98,10 @@ position Map::get_player_pos() {
     return my_player->get_pos();
 }
 
+ICreature* Map::get_player_race_pointer() {
+    return my_player->get_race_pointer();
+}
+
 std::vector<ICreature*> Map::get_monsters_around(position center){
     std::vector<ICreature*> found_monsters = {};
     position curr_pos;
@@ -141,7 +145,12 @@ void Map::map_monster_update(bool deletion, char marker, position *old_pos, posi
             my_monsters.insert({*new_pos, monster});
         }
     };
-    my_map[old_pos->y][old_pos->x] = my_start_map[old_pos->y][old_pos->x];
+    if(my_monsters.find(*old_pos) != my_monsters.end()){
+        my_map[old_pos->y][old_pos->x] = my_monsters[*old_pos]->get_marker();
+    }
+    else{
+        my_map[old_pos->y][old_pos->x] = my_start_map[old_pos->y][old_pos->x];
+    }
     if (!deletion) {
         my_map[new_pos->y][new_pos->x] = marker;
     }

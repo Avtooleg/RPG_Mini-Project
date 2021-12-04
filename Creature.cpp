@@ -2,6 +2,7 @@
 #include "Frontend.h"
 #include "Map.h"
 #include "Utils.h"
+#include <cmath>
 
 ICreature::ICreature(char mark, std::vector<int> init_stats, Map &init_map) 
     : marker(mark)
@@ -113,6 +114,8 @@ void ICreature::set_pos(position new_pos){
     pos = new_pos;
 }
 
+void ICreature::update_hp() {};
+
 void ICreature::init_move_points(){
     move_points = stats[2]/2 + 1;
 };
@@ -122,7 +125,7 @@ int ICreature::get_xp_given() {
     for (int i = 0; i < stats.size(); i++){
         xp+=stats[i];
     }
-    return xp;
+    return xp*10 + 10;
 }
 
 ICreature::~ICreature() noexcept {
@@ -153,7 +156,53 @@ void Test_creature::move(position direction){
 };*/
 
 //Тестовый вариант, без особого смысла
-void Test_creature::do_turn(){}
+void Test_creature::do_turn(){
+    init_move_points();
+    while(move_points > 0){
+        position to_player = global_map.get_player_pos() - pos;
+        float player_dist = abs(to_player);
+
+        if(player_dist != 1){
+
+        const int low = 0x0001;
+        const int high = 0x0002;
+        const int feel_rad = 5;
+        bool see = true;
+        int tries = 0;
+        position init_dir;
+        while(see) {
+            tries += 1;
+            if (tries > 100){
+                see = false;
+            }
+            int dir = get_random_int(0, 3);
+
+            bool high_bit = dir & high;
+            bool low_bit = dir & low;
+            init_dir.x = high_bit * (low_bit - !low_bit);
+            init_dir.y = !high_bit * (low_bit - !low_bit);
+            init_dir = init_dir + to_player * (feel_rad / pow(abs(to_player), 2));
+            if(pos.x + init_dir.x >= global_map.get_size() || pos.y + init_dir.y >= global_map.get_size()
+            || pos.x + init_dir.x < 0 || pos.y + init_dir.y < 0){
+                continue;
+            }
+            if(!is_in(global_map.get_value(pos + init_dir), forbidden_chars)){
+                see = false;
+            }
+        }
+        move(init_dir);
+        move_points -= 1;
+        }
+        else {
+            attack(*global_map.get_player_race_pointer());
+            move_points -= 1;
+        }
+    }
+}
+
+void Test_creature::update_hp() {
+    hp = stats[1]*10 + 10;
+}
 
 Test_creature::~Test_creature() noexcept {
     global_map.map_monster_update(true, marker, &pos);
